@@ -55,7 +55,7 @@ ROOT_URLCONF = 'Employee_Record_Management_System.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [r'E:\Django\Django Projects\Employee_Record_Management_System\employee\templetes'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
