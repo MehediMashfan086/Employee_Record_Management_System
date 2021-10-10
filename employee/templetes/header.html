@@ -9,6 +9,8 @@
 
 <link rel= "stylesheet" href= "{% static 'css/style.css' %}">
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <!-- Brand -->
   <a class="navbar-brand" href="#">Employee Record Management System</a>
@@ -23,19 +25,19 @@
     <ul class="navbar-nav">
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Employee Sign-up</a>
+        <a class="nav-link" href="{% url 'registration' %}"><i class="fas fa-registered"></i> Employee Registration</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Employee Log-in</a>
+        <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i> Employee Log-in</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Admin Log-in</a>
+        <a class="nav-link" href="#"><i class="fas fa-user-shield"></i> Admin Log-in</a>
       </li>
     </ul>
   </div>

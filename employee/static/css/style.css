@@ -3,8 +3,8 @@
 }
 
 .navbar-brand:hover{
+    font-weight: bold;
     color: rgb(192, 255, 234) !important;
-    background-color: blueviolet;
 }
 
 .nav-link{
@@ -13,5 +13,6 @@
 
 .nav-link:hover{
     color: rgb(255, 255, 255) !important;
-    background-color: blue;
+    background-color: rgba(0, 255, 200, 0.493);
+    border-radius: 5px;
 }
