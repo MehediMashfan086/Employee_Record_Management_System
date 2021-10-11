@@ -6,8 +6,11 @@
     {
         if(document.signup.pwd.value != document.signup.cpwd.value)
         {
-            alert('Password and Confirm Password Field Does Not Match')
+            alert('Password and Confirm Password Field Does Not Match');
+            document.signup.cpwd.focus();
+            return false;
         }
+        return true;
     }
 </script>
 
