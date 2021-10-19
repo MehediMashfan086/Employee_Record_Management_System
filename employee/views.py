@@ -15,9 +15,12 @@ def registration(request):
         em = request.POST['emailid']
         pwd = request.POST['pwd']
         try:
-            User.object.create_user(first_name = fn, last_name = ln, username = em, password = pwd)
-            EmployeeInfo.objects.create(employeecode = ec)
+            user = User.objects.create_user(first_name = fn, last_name = ln, username = em, password = pwd)
+            EmployeeInfo.objects.create(user = user, employeecode = ec)
+            error = "no"
         except:
-            error = "Yes"
-    
-    return render(request, 'registration.html')
+            error = "yes"
+    return render(request, 'registration.html', locals())
+
+def emp_login(request):
+    return render(request, 'emp_login.html')
