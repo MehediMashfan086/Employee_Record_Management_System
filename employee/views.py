@@ -38,3 +38,19 @@ def emp_login(request):
 
 def emp_home(request):
     return render(request, 'emp_home.html')
+
+def profile(request):
+    error = ""
+    if request.method == "POST":
+        fn = request.POST['firstname']
+        ln = request.POST['lastname']
+        ec = request.POST['employeecode']
+        em = request.POST['email']
+        pwd = request.POST['pwd']
+        try:
+            user = User.objects.create_user(first_name = fn, last_name = ln, username = em, password = pwd)
+            EmployeeInfo.objects.create(user = user, employeecode = ec)
+            error = "no"
+        except:
+            error = "yes"
+    return render(request, 'profile.html', locals())
