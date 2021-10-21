@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import *
 from django.contrib.auth import login, logout, authenticate
 
@@ -39,8 +39,14 @@ def emp_login(request):
 def emp_home(request):
     return render(request, 'emp_home.html')
 
+def Logout(request):
+    Logout(request)
+    return redirect('index.html')
+
 def profile(request):
     error = ""
+    user = request.user
+    employee = EmployeeInfo.objects.get(user=user)
     if request.method == "POST":
         fn = request.POST['firstname']
         ln = request.POST['lastname']
