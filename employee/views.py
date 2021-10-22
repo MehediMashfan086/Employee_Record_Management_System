@@ -8,16 +8,17 @@ def index(request):
     return render(request, 'index.html')
 
 def registration(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login.html')
     error = ""
+    user = request.user
+    employee = EmployeeInfo.objects.get(user=user)
     if request.method == "POST":
         fn = request.POST['firstname']
         ln = request.POST['lastname']
         ec = request.POST['employeecode']
-        dept = request.POST['department']
-        designation = request.POST['designation']
-        contact = request.POST['contact']
-        jdate = request.POST['jdate']
-        gender = request.POST['gender']
+        em = request.POST['email']
+        pwd = request.POST['pwd']
         try:
             user = User.objects.create_user(first_name = fn, last_name = ln, username = em, password = pwd)
             EmployeeInfo.objects.create(user = user, employeecode = ec)
@@ -25,6 +26,7 @@ def registration(request):
         except:
             error = "yes"
     return render(request, 'registration.html', locals())
+
 
 def emp_login(request):
     error = ""
@@ -48,22 +50,36 @@ def Logout(request):
     Logout(request)
     return redirect('index.html')
 
+
 def profile(request):
-    if not request.user.is_authenticated:
-        return redirect('emp_login.html')
     error = ""
-    user = request.user
-    employee = EmployeeInfo.objects.get(user=user)
     if request.method == "POST":
         fn = request.POST['firstname']
         ln = request.POST['lastname']
         ec = request.POST['employeecode']
-        em = request.POST['email']
-        pwd = request.POST['pwd']
+        dept = request.POST['department']
+        designation = request.POST['designation']
+        contact = request.POST['contact']
+        jdate = request.POST['jdate']
+        gender = request.POST['gender']
+
+        EmployeeInfo.user.first_name = fn
+        EmployeeInfo.user.last_name = ln
+        EmployeeInfo.employeecode = ec
+        EmployeeInfo.department = dept
+        EmployeeInfo.designation = designation
+        EmployeeInfo.jdate = jdate
+        EmployeeInfo.gender = gender
+
+        if jdate:
+            EmployeeInfo.joiningdate = jdate
+
         try:
-            user = User.objects.create_user(first_name = fn, last_name = ln, username = em, password = pwd)
-            EmployeeInfo.objects.create(user = user, employeecode = ec)
+            EmployeeInfo.save()
+            EmployeeInfo.user.save()
             error = "no"
         except:
             error = "yes"
     return render(request, 'profile.html', locals())
+
+
