@@ -13,8 +13,11 @@ def registration(request):
         fn = request.POST['firstname']
         ln = request.POST['lastname']
         ec = request.POST['employeecode']
-        em = request.POST['email']
-        pwd = request.POST['pwd']
+        dept = request.POST['department']
+        designation = request.POST['designation']
+        contact = request.POST['contact']
+        jdate = request.POST['jdate']
+        gender = request.POST['gender']
         try:
             user = User.objects.create_user(first_name = fn, last_name = ln, username = em, password = pwd)
             EmployeeInfo.objects.create(user = user, employeecode = ec)
@@ -37,6 +40,8 @@ def emp_login(request):
     return render(request, 'emp_login.html', locals())
 
 def emp_home(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login.html')
     return render(request, 'emp_home.html')
 
 def Logout(request):
@@ -44,6 +49,8 @@ def Logout(request):
     return redirect('index.html')
 
 def profile(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login.html')
     error = ""
     user = request.user
     employee = EmployeeInfo.objects.get(user=user)
