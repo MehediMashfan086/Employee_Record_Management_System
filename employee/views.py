@@ -1,4 +1,6 @@
 from django.shortcuts import redirect, render
+
+import employee
 from .models import *
 from django.contrib.auth import login, logout, authenticate
 
@@ -63,20 +65,20 @@ def profile(request):
         jdate = request.POST['jdate']
         gender = request.POST['gender']
 
-        EmployeeInfo.user.first_name = fn
-        EmployeeInfo.user.last_name = ln
-        EmployeeInfo.employeecode = ec
-        EmployeeInfo.department = dept
-        EmployeeInfo.designation = designation
-        EmployeeInfo.jdate = jdate
-        EmployeeInfo.gender = gender
+        employee.user.first_name = fn
+        employee.user.last_name = ln
+        employee.employeecode = ec
+        employee.department = dept
+        employee.designation = designation
+        employee.jdate = jdate
+        employee.gender = gender
 
         if jdate:
-            EmployeeInfo.joiningdate = jdate
+            employee.joiningdate = jdate
 
         try:
-            EmployeeInfo.save()
-            EmployeeInfo.user.save()
+            employee.save()
+            employee.user.save()
             error = "no"
         except:
             error = "yes"
